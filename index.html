@@ -360,6 +360,7 @@
         </section>
 
     </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
@@ -384,15 +385,20 @@
        EXPERIMENT DATA
     ====================================================== */
 
-let experimentData = {
-    selectedMovie: null,
-    confidence: null,
-    reasoning: "",
-    changedAnswer: null,
-    finalMovie: null
-};
 
 
+const SUPABASE_URL =
+    "https://jwblqdemofurimzghdtj.supabase.co/rest/v1/";
+
+const SUPABASE_KEY =
+    "sb_publishable_dFbMjYkTnePj-zD-vd-B6A_2UcAaWxx";
+
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
     /* =====================================================
        LEFT QUESTION NAVIGATION
     ====================================================== */
@@ -407,7 +413,65 @@ let experimentData = {
 
     });
 
+let experimentData = {
+    selectedMovie: null,
+    confidence: null,
+    reasoning: "",
+    changedAnswer: null,
+    finalMovie: null
+};
+async function saveExperiment() {
 
+    console.log("Saving experiment...");
+
+    console.log(
+        "Data being saved:",
+        experimentData
+    );
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("responses")
+            .insert({
+
+                selected_movie:
+                    experimentData.selectedMovie,
+
+                confidence:
+                    experimentData.confidence,
+
+                reasoning:
+                    experimentData.reasoning,
+
+                changed_answer:
+                    experimentData.changedAnswer,
+
+                final_movie:
+                    experimentData.finalMovie
+
+            })
+            .select();
+
+
+    if (error) {
+
+        console.error(
+            "Error saving experiment:",
+            error
+        );
+
+        return false;
+    }
+
+
+    console.log(
+        "Experiment successfully saved:",
+        data
+    );
+
+    return true;
+}
     /* =====================================================
        QUESTION 1
        MOVIE SELECTION
@@ -1264,7 +1328,7 @@ function showChangeQuestion() {
 
     changeOptions.forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener("click", async () => {
 
             const changeAnswer =
                 button.dataset.change;
@@ -1288,26 +1352,33 @@ function showChangeQuestion() {
 
             if (changeAnswer === "no") {
 
-                experimentData.finalMovie =
-                    experimentData.selectedMovie;
+    experimentData.finalMovie =
+        experimentData.selectedMovie;
 
 
-                console.log(
-                    "Final movie:",
-                    experimentData.finalMovie
-                );
+    console.log(
+        "Final movie:",
+        experimentData.finalMovie
+    );
 
 
-                console.log(
-                    "Complete experiment data:",
-                    experimentData
-                );
+    console.log(
+        "Complete experiment data:",
+        experimentData
+    );
 
 
-                showFinalResult();
+    // SAVE TO SUPABASE
 
-                return;
-            }
+    const saved =
+        await saveExperiment();
+
+    if (saved) {
+        showFinalResult();
+    }
+
+    return;
+}
 
 
             /* ==========================================
@@ -1407,7 +1478,7 @@ function showFinalMovieChoice() {
 
     finalMovieOptions.forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener("click", async () => {
 
             const finalMovie =
                 button.dataset.movie;
@@ -1433,8 +1504,14 @@ function showFinalMovieChoice() {
 
             // Finish experiment
 
-            showFinalResult();
+// SAVE TO SUPABASE
 
+const saved =
+    await saveExperiment();
+
+if (saved) {
+    showFinalResult();
+}
         });
 
     });
