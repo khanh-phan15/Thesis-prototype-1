@@ -1471,14 +1471,14 @@ function showFinalMovieChoice() {
                 button.dataset.movie;
 
 
-            console.log(
-                "Final movie selected:",
-                finalMovie
-            );
-
-
             experimentData.finalMovie =
                 finalMovie;
+
+
+            console.log(
+                "Final movie:",
+                experimentData.finalMovie
+            );
 
 
             console.log(
@@ -1512,6 +1512,40 @@ function showFinalMovieChoice() {
         });
 
     });
+
+}
+
+
+/* ==========================================
+   FINAL THANK YOU SCREEN
+========================================== */
+
+function showFinalResult() {
+
+    contentPanel.innerHTML = `
+
+        <div class="content-header">
+
+            <div class="header-top">
+
+                <span class="question-label">
+                    COMPLETE
+                </span>
+
+            </div>
+
+            <h2>
+                Thank you for<br>
+                participating.
+            </h2>
+
+            <p class="instruction">
+                Your responses have been recorded.
+            </p>
+
+        </div>
+
+    `;
 
 }
 </script>
