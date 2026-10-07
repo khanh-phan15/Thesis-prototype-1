@@ -429,8 +429,7 @@ async function saveExperiment() {
         experimentData
     );
 
-
-    const { data, error } =
+    const { error } =
         await supabaseClient
             .from("responses")
             .insert({
@@ -450,9 +449,7 @@ async function saveExperiment() {
                 final_movie:
                     experimentData.finalMovie
 
-            })
-            .select();
-
+            });
 
     if (error) {
 
@@ -464,10 +461,8 @@ async function saveExperiment() {
         return false;
     }
 
-
     console.log(
-        "Experiment successfully saved:",
-        data
+        "Experiment successfully saved."
     );
 
     return true;
@@ -1406,11 +1401,9 @@ function showFinalMovieChoice() {
 
             </div>
 
-
             <h2>
                 What is your prediction now?
             </h2>
-
 
             <p class="instruction">
                 After seeing ChatGPT's prediction,
@@ -1418,7 +1411,6 @@ function showFinalMovieChoice() {
             </p>
 
         </div>
-
 
         <div class="final-movie-options">
 
@@ -1441,7 +1433,6 @@ function showFinalMovieChoice() {
                 </span>
 
             </button>
-
 
             <button
                 class="final-movie-option"
@@ -1468,10 +1459,6 @@ function showFinalMovieChoice() {
     `;
 
 
-    /* ==========================================
-       FINAL MOVIE SELECTION
-    ========================================== */
-
     const finalMovieOptions =
         document.querySelectorAll(".final-movie-option");
 
@@ -1484,16 +1471,14 @@ function showFinalMovieChoice() {
                 button.dataset.movie;
 
 
-            // SAVE FINAL ANSWER
+            console.log(
+                "Final movie selected:",
+                finalMovie
+            );
+
 
             experimentData.finalMovie =
                 finalMovie;
-
-
-            console.log(
-                "Final movie:",
-                experimentData.finalMovie
-            );
 
 
             console.log(
@@ -1502,16 +1487,28 @@ function showFinalMovieChoice() {
             );
 
 
-            // Finish experiment
+            // SAVE TO SUPABASE
 
-// SAVE TO SUPABASE
+            const saved =
+                await saveExperiment();
 
-const saved =
-    await saveExperiment();
 
-if (saved) {
-    showFinalResult();
-}
+            if (saved) {
+
+                console.log(
+                    "Final response saved successfully."
+                );
+
+                showFinalResult();
+
+            } else {
+
+                console.error(
+                    "Response was NOT saved."
+                );
+
+            }
+
         });
 
     });
