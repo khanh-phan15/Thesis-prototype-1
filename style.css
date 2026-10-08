@@ -512,7 +512,449 @@ body {
         display: none;
     }
 }
+/* ==========================================
+   PHONE RESPONSIVE
+   ========================================== */
 
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100%;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    /* ------------------------------------------
+       MAIN LAYOUT
+       ------------------------------------------ */
+
+    .experiment {
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        overflow: visible;
+    }
+
+
+    /* ------------------------------------------
+       QUESTION NAVIGATION
+       ------------------------------------------ */
+
+    .questions-panel {
+        width: 100%;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        border-right: none;
+        border-bottom: 1px solid #00249a;
+
+        flex-shrink: 0;
+    }
+
+    .questions-header {
+        padding: 18px 20px 15px;
+    }
+
+    .eyebrow {
+        font-size: 9px;
+        margin-bottom: 7px;
+    }
+
+    .questions-header h1 {
+        font-size: 27px;
+        margin-bottom: 0;
+    }
+
+    .questions-header p {
+        display: none;
+    }
+
+
+    /* ------------------------------------------
+       HORIZONTAL QUESTION NAV
+       ------------------------------------------ */
+
+    .questions-list {
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        -webkit-overflow-scrolling: touch;
+
+        scrollbar-width: none;
+    }
+
+    .questions-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .question {
+        flex: 0 0 auto;
+
+        width: auto;
+        min-width: 110px;
+        min-height: 72px;
+
+        padding: 12px 15px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        border-bottom: none;
+        border-right: 1px solid #00249a;
+    }
+
+    .question:hover {
+        padding-left: 15px;
+    }
+
+    .question-number {
+        font-size: 9px;
+    }
+
+    .question-text {
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .questions-footer {
+        display: none;
+    }
+
+
+    /* ------------------------------------------
+       MAIN CONTENT
+       ------------------------------------------ */
+
+    .content-panel {
+        width: 100%;
+        min-height: calc(100vh - 150px);
+        height: auto;
+
+        padding: 25px 20px 35px;
+
+        overflow: visible;
+    }
+
+
+    /* ------------------------------------------
+       CONTENT HEADER
+       ------------------------------------------ */
+
+    .content-header {
+        margin-bottom: 25px;
+        padding-left: 0;
+    }
+
+    .header-top {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 18px;
+    }
+
+    .question-label,
+    .header-category {
+        margin-left: 0;
+        font-size: 9px;
+    }
+
+    .content-header h2 {
+        margin-left: 0;
+
+        font-size: clamp(32px, 9vw, 44px);
+
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+
+        max-width: 100%;
+    }
+
+    .instruction {
+        margin-left: 0;
+        margin-top: 16px;
+
+        max-width: 100%;
+
+        font-size: 14px;
+        line-height: 1.45;
+    }
+
+
+    /* ------------------------------------------
+       QUESTION 1 — MOVIE GRID
+       ------------------------------------------ */
+
+    .movie-grid {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
+        overflow: visible;
+    }
+
+    .movie-card {
+        width: 100%;
+        min-height: auto;
+
+        padding: 18px;
+    }
+
+    .movie-top {
+        padding-bottom: 14px;
+    }
+
+    .movie-main {
+        padding-top: 20px;
+    }
+
+    .movie-main h3 {
+        font-size: clamp(45px, 15vw, 70px);
+        margin-bottom: 18px;
+    }
+
+    .movie-description {
+        max-width: 100%;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .movie-bottom {
+        padding-top: 18px;
+        margin-top: 25px;
+    }
+
+    .movie-cast {
+        gap: 6px 12px;
+        margin-bottom: 16px;
+    }
+
+    .movie-cast span {
+        font-size: 8px;
+    }
+
+    .trailer-link {
+        font-size: 9px;
+    }
+
+    .movie-choice {
+        width: calc(100% + 36px);
+
+        margin:
+            18px -18px -18px;
+
+        padding: 17px 18px;
+    }
+
+
+    /* ------------------------------------------
+       QUESTION 2 — CONFIDENCE
+       ------------------------------------------ */
+
+    .confidence-section {
+        width: 100%;
+
+        margin-left: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 30px 0;
+    }
+
+    .confidence-container {
+        width: 100%;
+        max-width: none;
+    }
+
+    .confidence-value {
+        margin-bottom: 40px;
+
+        font-size: 80px;
+    }
+
+    .confidence-percent {
+        font-size: 22px;
+        margin-left: 5px;
+    }
+
+    .confidence-slider-wrapper {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .confidence-label {
+        font-size: 8px;
+    }
+
+    #confidence-slider {
+        width: 100%;
+    }
+
+    .confidence-continue {
+        width: 100%;
+
+        margin-top: 35px;
+
+        padding: 17px 18px;
+    }
+
+
+    /* ------------------------------------------
+       QUESTION 3 — REASONING
+       ------------------------------------------ */
+
+    .reasoning-section {
+        width: 100%;
+
+        padding: 0;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reasoning-input {
+        width: 100%;
+
+        min-height: 220px;
+
+        margin-left: 0;
+
+        padding: 18px;
+
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .reasoning-input::placeholder {
+        font-size: 16px;
+    }
+
+    .reasoning-footer {
+        width: 100%;
+
+        margin-top: 8px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .character-count {
+        margin-left: 0;
+
+        font-size: 10px;
+    }
+
+    .reasoning-continue {
+        width: 100%;
+
+        margin-top: 25px;
+        margin-left: 0;
+
+        padding: 17px 18px;
+    }
+
+
+    /* ------------------------------------------
+       QUESTION 4 — AI DECISION
+       ------------------------------------------ */
+
+    .ai-continue {
+        width: 100%;
+
+        max-width: none;
+
+        margin-top: 30px;
+        margin-left: 0;
+
+        padding: 17px 18px;
+    }
+
+
+    /* ------------------------------------------
+       QUESTION 5 — YES / NO
+       ------------------------------------------ */
+
+    .change-options {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+
+        padding: 20px 0 30px;
+    }
+
+    .change-option {
+        width: 100%;
+
+        min-height: 150px;
+
+        margin-left: 0;
+
+        padding: 18px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+
+    /* ------------------------------------------
+       FINAL MOVIE CHOICE
+       ------------------------------------------ */
+
+    .final-movie-options {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        padding: 0 0 30px;
+    }
+
+    .final-movie-option {
+        width: 100%;
+
+        min-height: 180px;
+
+        padding: 20px;
+    }
+
+    .final-movie-option strong {
+        font-size: clamp(48px, 16vw, 70px);
+    }
+}
 
 /* ================================
    BOTTOM
@@ -558,76 +1000,6 @@ body {
     background: transparent;
     color: #00249a;
 }
-
-
-/* ================================
-   RESPONSIVE
-================================ */
-
-@media (max-width: 800px) {
-
-    .experiment {
-        grid-template-columns: 1fr;
-        grid-template-rows: 35vh 65vh;
-    }
-
-    .questions-panel {
-        height: 35vh;
-
-        border-right: none;
-        border-bottom: 1px solid #00249a;
-    }
-
-    .questions-header {
-        padding: 20px;
-    }
-
-    .questions-header h1 {
-        font-size: 28px;
-    }
-
-    .questions-header p {
-        display: none;
-    }
-
-    .questions-list {
-        display: flex;
-        overflow-x: auto;
-        overflow-y: hidden;
-    }
-
-    .question {
-        min-width: 180px;
-        min-height: 100%;
-
-        padding: 15px;
-    }
-
-    .question:hover {
-        padding-left: 15px;
-    }
-
-    .questions-footer {
-        display: none;
-    }
-
-    .content-panel {
-        height: 65vh;
-
-        padding: 25px;
-    }
-
-    .content-header {
-        margin-bottom: 20px;
-    }
-
-    .content-header h2 {
-        font-size: 38px;
-    }
-}
-
-
-
  .confidence-section {
             flex: 1;
             margin-left: -240px;
