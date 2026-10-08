@@ -15,9 +15,18 @@ body {
 }
 
 body {
-    font-family: "Caslon Ionic", light, serif;
+    font-family: "Noto Serif", serif;
+    font-weight: 300;
     background: #def6ff;
     color: #00249a;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: "Noto Serif", serif;
+    font-weight: 300;
 }
 
 
