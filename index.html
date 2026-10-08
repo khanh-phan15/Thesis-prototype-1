@@ -740,32 +740,31 @@ async function saveExperiment() {
        MOVIE BUTTON LISTENERS
     ====================================================== */
 
-    function addMovieListeners() {
+function addMovieListeners() {
 
-        const buttons =
-            document.querySelectorAll(".movie-choice");
+    const buttons =
+        document.querySelectorAll(".movie-choice");
 
 
-        buttons.forEach(button => {
+    buttons.forEach(button => {
 
-            button.addEventListener("click", () => {
+        button.addEventListener("click", () => {
 
-                selectedMovie =
-                    button.dataset.movie;
+            experimentData.selectedMovie =
+                button.dataset.movie;
 
-                console.log(
-                    "Selected movie:",
-                    selectedMovie
-                );
+            console.log(
+                "Selected movie:",
+                experimentData.selectedMovie
+            );
 
-                goToQuestion(1);
-
-            });
+            goToQuestion(1);
 
         });
 
-    }
+    });
 
+}
 
     /* =====================================================
        QUESTION 2
@@ -990,7 +989,7 @@ async function saveExperiment() {
        TEMPORARY
     ====================================================== */
 
-   function showReasoningQuestion() {
+function showReasoningQuestion() {
 
     contentPanel.innerHTML = `
 
@@ -1008,6 +1007,7 @@ async function saveExperiment() {
                 Why did you<br>
                 choose this movie?
             </h2>
+
         </div>
 
 
@@ -1054,7 +1054,9 @@ async function saveExperiment() {
     `;
 
 
-    // Find the elements we just created
+    /* ==========================================
+       GET Q3 ELEMENTS
+    ========================================== */
 
     const reasoningInput =
         document.getElementById("reasoning-input");
@@ -1062,11 +1064,13 @@ async function saveExperiment() {
     const characterCount =
         document.getElementById("character-count");
 
-    const submitButton =
-        document.getElementById("reasoning-submit");
+    const continueButton =
+        document.getElementById("reasoning-continue");
 
 
-    // Update character count while typing
+    /* ==========================================
+       CHARACTER COUNT
+    ========================================== */
 
     reasoningInput.addEventListener("input", () => {
 
@@ -1079,15 +1083,19 @@ async function saveExperiment() {
     });
 
 
-    // Save the answer when submitted
+    /* ==========================================
+       CONTINUE BUTTON
+    ========================================== */
 
-    submitButton.addEventListener("click", () => {
+    continueButton.addEventListener("click", () => {
 
         const reasoningAnswer =
             reasoningInput.value.trim();
 
 
-        // Make sure the participant actually answered
+        /* ==========================================
+           MAKE SURE USER ANSWERED
+        ========================================== */
 
         if (reasoningAnswer === "") {
 
@@ -1098,7 +1106,9 @@ async function saveExperiment() {
         }
 
 
-        // Save the answer
+        /* ==========================================
+           SAVE Q3 ANSWER
+        ========================================== */
 
         experimentData.reasoning =
             reasoningAnswer;
@@ -1110,7 +1120,15 @@ async function saveExperiment() {
         );
 
 
-        // Move to Question 4
+        console.log(
+            "Current experiment data:",
+            experimentData
+        );
+
+
+        /* ==========================================
+           MOVE TO QUESTION 4
+        ========================================== */
 
         goToQuestion(3);
 
